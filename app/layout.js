@@ -1,5 +1,5 @@
 import './globals.css'
-import Head from './head'
+import Head from './Head'
 import { Montserrat } from 'next/font/google'
 import Navbar from './navbar'
 
