@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL_MONGO")
+}
+
+model lists {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  v         Int      @map("__v")
+  content   String[]
+  createdAt DateTime @db.Date
+  genre     String
+  title     String   @unique(map: "title_1")
+  type      String
+  updatedAt DateTime @db.Date
+}
+
+model movies {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  v         Int      @map("__v")
+  createdAt DateTime @db.Date
+  desc      String
+  genre     String
+  img       String
+  imgSmall  String
+  imgTitle  String
+  isSeries  Boolean
+  limit     Int
+  title     String   @unique(map: "title_1")
+  trailer   String
+  updatedAt DateTime @db.Date
+  year      String
+}
+
+model users {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  v          Int      @map("__v")
+  createdAt  DateTime @db.Date
+  email      String   @unique(map: "email_1")
+  isAdmin    Boolean
+  password   String
+  profilePic String
+  token      String
+  updatedAt  DateTime @db.Date
+  username   String   @unique(map: "username_1")
+}
